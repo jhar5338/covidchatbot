@@ -1,6 +1,6 @@
 import java.io.*;
 import java.util.*;
-import java.lang.*;
+import java.text.*;
 
 ;/*
  * Format for storing entries is Surname;FirstName;Birthdate;Postcode;PhoneNumber;DateOfTest;TestResult
@@ -50,24 +50,21 @@ public class covidchatbot {
 			System.out.println("PLEASE ENTER BIRTHDATE IN FORMAT DDMMYYYY OR TYPE 0 TO GO BACK");
 			String inputString = textInput.nextLine();
 			
-			// determine if given birth date is valid
 			if (isNumeric(inputString)) {
 				if (Integer.parseInt(inputString)==0) {
 					return null;
 				}
+				// check if the date is valid
 				if (inputString.length()==8) {
-					int[] birthDate = new int[inputString.length()];
-					
-					// 
-					for (int i = 0; i < inputString.length(); i++) {
-						char temp = inputString.charAt(i);
-						birthDate[i] = Character.getNumericValue(temp);
+					SimpleDateFormat format = new SimpleDateFormat("ddMMyyyy");
+					format.setLenient(false);
+					try {
+						Date birthDate = format.parse(inputString);	
+					}	catch (ParseException e) {
+						System.out.println("INVALID BIRTHDATE GIVEN");
+						continue;
 					}
-					int day = birthDate[0]*10 + birthDate[1];
-					int month = birthDate[2]*10 + birthDate[3];
-					int year = birthDate[4]*1000 + birthDate[5]*100 + birthDate[6]*10 + birthDate[7]; 
-					System.out.println(day + "," + month + "," + year);
-					return null;
+					
 				}	else {
 					System.out.println("INVALID NUMBER OF CHARACTERS PLEASE TRY AGAIN");
 				}
