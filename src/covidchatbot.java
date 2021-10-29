@@ -525,8 +525,19 @@ public class covidchatbot {
 					System.out.println("THANK YOU, " + entriesAdded + " ENTRIES ADDED, " + entriesRemoved + " ENTRIES REMOVED, " + entriesCounter + " ENTRIES TOTAL" );
 					textInput.close();
 					
-					// TODO update file with new entries by clearing file then adding entries to file
-					
+					// clear file then write to file using updated entries arraylist
+					new PrintWriter("TestHistory.txt").close();
+					FileWriter myWriter = new FileWriter("TestHistory.txt");
+					String entry;
+					for (int i = 0; i < entries.size(); i++) {
+						entry = Arrays.toString(entries.get(i));
+						entry = entry.replace(',', ';');
+						entry = entry.replaceAll(" " , "");
+						entry = entry.substring(1,entry.length()-1) + "\n";
+						myWriter.write(entry);
+					}
+					myWriter.flush();
+					myWriter.close();
 					System.exit(0);
 				case 1:
 					addEntry();
