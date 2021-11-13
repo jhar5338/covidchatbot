@@ -3,9 +3,20 @@ import java.util.*;
 import java.text.*;
 
 /*
- * Format for storing entries is Surname;FirstName;Birthdate;Postcode;PhoneNumber;DateOfTest;TestResult
- * Test result will be P for positive, N for negative, U for unknown
- */
+	This chat bot is used to manage test result entries with 4 simple commands in a conversational manner.
+		1. add entry
+		2. remove entry
+		3. submit test result
+		4. view entry
+
+	These entries are stored locally in a txt file named TestHistory.txt, which will be created if not found. 
+
+	The test entries are stored within the text file in the following string:
+	LASTNAME;FIRSTNAME;BIRTHDATE;POSTCODE;PHONENUMBER;DATETAKEN;TESTRESULT
+	
+	Where DATETAKEN is the date when the covid test was administered.
+	The test result will be a single character: P for positive, N for negative, U for unknown.
+*/
 
 public class covidchatbot {
 	
