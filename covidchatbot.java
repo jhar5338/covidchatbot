@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 import java.text.*;
 
-;/*
+/*
  * Format for storing entries is Surname;FirstName;Birthdate;Postcode;PhoneNumber;DateOfTest;TestResult
  * Test result will be P for positive, N for negative, U for unknown
  */
